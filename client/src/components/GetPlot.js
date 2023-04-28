@@ -1,28 +1,37 @@
 import React, { useState } from 'react';
+import { storage } from './firebase';
 
 function GetPlot() {
-    const [plot, setPlot] = useState(null);
+  const [plots, setPlots] = useState([]);
 
-    async function fetchPlot() {
-        try {
-            const response = await fetch('http://localhost:5000/get_plots', {
-                mode: 'cors'
-            });
-            const blob = await response.blob();
-            const url = URL.createObjectURL(blob);
-            setPlot(url);
-        } catch (error) {
-            console.log(error);
-        }
+  async function fetchPlots() {
+    const storageRef = storage.ref('vis');
+    try {
+      const fileRefs = await storageRef.listAll();
+      const urls = await Promise.all(
+        fileRefs.items.map((itemRef) => itemRef.getDownloadURL())
+      );
+      setPlots(urls);
+    } catch (error) {
+      console.log(error);
     }
-    
+  }
 
-    return (
-        <div>
-            <button onClick={fetchPlot}>Get Plot</button>
-            {plot && <img src={plot} alt="plot" />}
-        </div>
-    );
+  return (
+    <div>
+    <button onClick={fetchPlots}>Get Plots</button>
+    <div style={{ display: 'flex', flexWrap: 'wrap', marginTop: '20px' }}>
+      {plots.map((url) => (
+        <img
+          key={url}
+          src={url}
+          alt="plot"
+          style={{ width: '300px', height: '200px', margin: '10px' }}
+        />
+      ))}
+    </div>
+  </div>
+  );
 }
 
 export default GetPlot;
