@@ -1,26 +1,30 @@
-from flask import Flask, jsonify, send_file
-from flask_cors import CORS
-from io import BytesIO
+import firebase_admin
+from firebase_admin import credentials, storage
+import os
 
-app = Flask(__name__)
-CORS(app)
-# CORS(app, resources={r"/plot/*": {"origins": "*"}})
+# Initialize the Firebase Admin SDK with the storageBucket option
+cred = credentials.Certificate("../google-service.json")
+firebase_admin.initialize_app(cred)
 
+# Get a reference to the default bucket
+bucket = storage.bucket('data-vis-96dc7.appspot.com')
 
-@app.route('/')
-def index():
-    return 'Hello, World!'
+# Path to the folder to be uploaded
+folder_path = "plots"
 
-@app.route('/get_plots')
-def get_plots():
-    # Assuming the saved plot is in the temp/images directory
-    filename = 'temp/images/numeric_plot0.png'
-    return send_file(filename, mimetype='image/png')
+# Get a reference to the folder we want to create
+folder_ref = bucket.blob('plot/')
 
-@app.route('/plot/<path:filename>')
-def send_plot(filename):
-    # Serve the requested image file to the client side
-    return send_file('temp/images/' + filename)
+# Create an empty file to create the folder
+folder_ref.upload_from_string('')
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Traverse through all the files in the folder and upload each file to Firebase Storage
+for subdir, dirs, files in os.walk(folder_path):
+    for file in files:
+        file_path = os.path.join(subdir, file)
+        blob = bucket.blob('plot/' + os.path.relpath(file_path, folder_path))
+        blob.upload_from_filename(file_path)
+
+        # Get the public URL of the uploaded file
+        url = blob.public_url
+        print(url)
