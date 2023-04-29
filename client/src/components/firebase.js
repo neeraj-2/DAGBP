@@ -1,0 +1,16 @@
+import 'firebase/app';
+
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/storage';
+
+const firebaseConfig = {
+    apiKey: "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCqIlLQcauFwT7Z\nNlC1U+6RDKM7kERN7kdZiqTyBVl4jcm8FK532iTAFo0i/TpcjiCT5tea4/B2J5G2\nAqCB1s0i5XWECWbaDM0C8UODqFasCt0jAKjFBfCJf+bMhf/dDCMMIqmFgq66jRGI\na9AMDc3P2AZVVAFZvlSDhezhoyfHS2xVBHoUGraIN0/b793+BIZqAEJPWPoHVYkT\n/mSqkOgMcFvlo0zMpEktg6I58yt9EL22FLi1A+v4HRXKyg/l4pSWb0mFe4sN8y7V\ne2Pj5LHTdut7aHyfAEqCGgWDDEfyT0/Ryue/UG/GzQMScX2MpTPbij3BLJ0hDdaf\n9JVnhYT/AgMBAAECggEANawcWhvyE4EyVY4YCgxPb7z/5fOOSNOJ+MqPXLapUinQ\n4Z/YpoDQJTU4Ezi156sCxgYGMJwGKRA0nKnZfvyHvKGM4DmjE9kD+BCqzucVaLMI\nrlkv5PAJwSbzZcREQrTofZSVzEO84adNR69Tc+oK6q3o2ZRl1K0BtnhSkaBKFUnG\ncJZJLmovodPbd/ejd4y3+YwlIcAVha7WIDkdvNgp5H58/iSzu1On1pu66nmfAUVl\nm1ClilhcsbqsW0ZXjqKLe78wif4ITrh8ySHfbu+j4+s4+lLh5kcWj1cOKzmZdFjT\n2o2BDRq8wPoCBwz9YdvheXLWDIr/HhwfSCnoQxk5yQKBgQDqj1b850qdU2y89yi+\nNn0rvE0PEBKihP2JSRmnJK5gWCPIMS84uqrZ7Kr9Abj0MvXNellu7Q3B+ZoZfmJK\ncTKwfxQcARv31S9UMNmSzrYDQHsdtHHPLT14of2Y6AFaiawnMLaV+kKG6TksJdc0\nT17hi6ZVwIkC7mxQBCPdZ2bI3QKBgQC5r24xy+fu9VOzsi7n0oWQj+g8mNHJJIH6\nFWschNu/ej9Cm08k5aqYfqzq7afdrng23UpHTgYZbQFILTf0JiVodvZiSZBLgfVN\nSzAhL1hGi5C5g2iXEWQpIHcw7sxQpudIVceEo+j5vvJ2qj8sV2XOGrFhkLd3qatm\n4dVxhX55iwKBgQCEr5tEq04hGz0q1CHfIBHEuNtahvwTpWmKzKhPTce6xoFPUMtm\nqunVJzU+tEe9FErJ9sk6n6ylqx3KCB1wAQLspqZohRQeKSGB3bRmgLqjskky741l\n5jCc2f4MDkodvj19WegfhRc3HB10ZN+NPszsh8QLREP9PYRV61GigEi7nQKBgGpX\ngxd3vNvImmg2atCPa7jwAcP6jWLRyrKL460Qlb1iaKpfwgLSmVH+ck+VTecSjXx2\nXZzanXmgSPSqGPp1gkUCpHaDxOTJh8/9eJH4yGiWc4sbLCIgbqlzE2/twwuJmrl9\njudy6/FkHv5A4C8n2oEgHmhO9hPNEwG34oLCPj2jAoGASOuPsKsRf4Dk1N7rQm9a\nsh+aiLjnMVchT7AFQI1J80GoX0TRBZ/CrHFDLNiC+CMEkNCkYdIg7ryU1vIUxLHj\nJfViWZBfJ7JKYa29JN7eE+iW3ngvmNFw2vqP7/kDVtA85L6ycFgwMEF/zbdkguAY\nO0439EcZLOFeO+bqb1jxwBY=\n-----END PRIVATE KEY-----\n",
+    authDomain: "data-vis-96dc7.firebaseapp.com",
+    storageBucket: "data-vis-96dc7.appspot.com",
+    projectId: "data-vis-96dc7",
+  };
+firebase.initializeApp(firebaseConfig);
+
+const storage = firebase.storage();
+
+export { storage, firebase as default };
