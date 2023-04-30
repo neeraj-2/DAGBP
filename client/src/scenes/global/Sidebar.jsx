@@ -207,7 +207,7 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Let's visualize"
-              to="/faq"
+              to="/defaultvis"
               icon={<VisibilityIcon />}
               selected={selected}
               setSelected={setSelected}
