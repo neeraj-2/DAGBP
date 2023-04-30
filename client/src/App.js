@@ -12,6 +12,7 @@ import Pie from "./scenes/pie";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import FAQ from "./scenes/faq";
+import DefaultVis from "./scenes/defaultvis";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -35,6 +36,7 @@ function App() {
               <Route path="/pie" element={<Pie />} />
               <Route path="/line" element={<Line />} />
               <Route path="/faq" element={<FAQ />} />
+              <Route path="/defaultvis" element={<DefaultVis />} />
 
 
              
