@@ -3,11 +3,12 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import BubblePlot from "./BubblePlot";
 
-export default function UploadCSV() {
+export default function UploadCSV({ success, onUpdateSuccess }) {
+  console.log(success);
   const [file, setFile] = useState();
   const [array, setArray] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+;
   const [error, setError] = useState(false);
 
   const fileReader = new FileReader();
@@ -37,7 +38,7 @@ export default function UploadCSV() {
 
     if (file) {
       setLoading(true);
-      setSuccess(false);
+      
       setError(false);
 
       try {
@@ -52,7 +53,7 @@ export default function UploadCSV() {
         if (response.ok) {
           const text = await response.text();
           csvFileToArray(text);
-          setSuccess(true);
+          onUpdateSuccess();
         } else {
           throw new Error("Network response was not ok.");
         }
@@ -69,14 +70,24 @@ export default function UploadCSV() {
 
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Visualization Plots</h1>
+      
       <form>
         <input
           type={"file"}
           id={"csvFileInput"}
           accept={".csv"}
           onChange={handleOnChange}
-          style={{ marginRight: "10px" }}
+          style={{
+            backgroundColor: "#333",
+            color: "#eee",
+            padding: "12px 24px",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            transition: "background-color 0.3s ease",
+            marginRight: "10px",
+            marginBottom: "10px",
+          }}
         />
 
         <br />
@@ -96,7 +107,7 @@ export default function UploadCSV() {
             handleOnSubmit(e);
           }}
         >
-          Send
+          Submit
         </button>
       </form>
 

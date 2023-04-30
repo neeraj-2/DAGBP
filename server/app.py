@@ -14,22 +14,19 @@ app = Flask(__name__)
 
 CORS(app)
 # Initialize the Firebase Admin SDK with the storageBucket option
-cred = credentials.Certificate("../google-service.json")
+cred = credentials.Certificate("./google-service.json")
 firebase_admin.initialize_app(cred)
-
-
 
 
 # @app.route('/run-script')
 def run_script():
-    print ("Hello")
+    print("Hello")
     # import final.py script
     import final
     # run finsl.py script
     # final.main(df)
 
-
-        # Get a reference to the default bucket
+    # Get a reference to the default bucket
     bucket = storage.bucket('data-vis-96dc7.appspot.com')
 
     # Name of the folder to be uploaded
@@ -63,8 +60,6 @@ def run_script():
             url = blob.public_url
             print(url)
 
-   
-
     # Return a message to the client
     return "The script has been executed successfully!"
 
@@ -81,7 +76,5 @@ def upload_file():
     return 'File uploaded successfully'
 
 
-
 if __name__ == '__main__':
     app.run(debug=True)
-
