@@ -256,7 +256,7 @@ categoric = df2.loc[:, new_cols]
 # In[26]:
 
 
-# pie chart (if no. of cat<6)
+# pie chart (if no. of cat<7)
 
 
 # In[88]:
