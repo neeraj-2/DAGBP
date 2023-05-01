@@ -114,7 +114,7 @@ const FAQ = () => {
   return (
     <Box m="20px">
       <Header title="Let's Visualize" subtitle="Upload your CSV Data" />
-      <UploadCSV success={success} setSuccess={handleSuccess} />
+      <UploadCSV success={success} onUpdateSuccess={handleSuccess} />
       {/* if success is tue  */}
       {success && (
         <Box
