@@ -27,38 +27,38 @@ def run_script():
     # final.main(df)
 
     # Get a reference to the default bucket
-    # bucket = storage.bucket('data-vis-96dc7.appspot.com')
+    bucket = storage.bucket('data-vis-96dc7.appspot.com')
 
-    # # Name of the folder to be uploaded
-    # folder_name = "plots"
+    # Name of the folder to be uploaded
+    folder_name = "plots"
 
-    # # Get a reference to the folder we want to create
-    # folder_ref = bucket.blob(folder_name+'/')
+    # Get a reference to the folder we want to create
+    folder_ref = bucket.blob(folder_name+'/')
 
-    # # Delete the folder if it already exists
-    # if folder_ref.exists():
-    #     blobs = bucket.list_blobs(prefix=folder_name+'/')
-    #     for blob in blobs:
-    #         blob.delete()
+    # Delete the folder if it already exists
+    if folder_ref.exists():
+        blobs = bucket.list_blobs(prefix=folder_name+'/')
+        for blob in blobs:
+            blob.delete()
 
-    # # Create an empty file to create the folder
-    # folder_ref.upload_from_string('')
+    # Create an empty file to create the folder
+    folder_ref.upload_from_string('')
 
-    # # Traverse through all the files in the folder and upload each file to Firebase Storage
-    # # Traverse through all the files in the folder and upload each file to Firebase Storage
-    # for subdir, dirs, files in os.walk(folder_name):
-    #     # Get a reference to the folder
-    #     folder_ref = bucket.blob(subdir+'/')
-    #     folder_ref.upload_from_string('')
+    # Traverse through all the files in the folder and upload each file to Firebase Storage
+    # Traverse through all the files in the folder and upload each file to Firebase Storage
+    for subdir, dirs, files in os.walk(folder_name):
+        # Get a reference to the folder
+        folder_ref = bucket.blob(subdir+'/')
+        folder_ref.upload_from_string('')
 
-    #     for file in files:
-    #         file_path = os.path.join(subdir, file)
-    #         blob = bucket.blob(subdir+'/'+file)
-    #         blob.upload_from_filename(file_path)
+        for file in files:
+            file_path = os.path.join(subdir, file)
+            blob = bucket.blob(subdir+'/'+file)
+            blob.upload_from_filename(file_path)
 
-    #         # Get the public URL of the uploaded file
-    #         url = blob.public_url
-    #         print(url)
+            # Get the public URL of the uploaded file
+            url = blob.public_url
+            print(url)
 
     # Return a message to the client
     return "The script has been executed successfully!"
